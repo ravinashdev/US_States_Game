@@ -17,7 +17,7 @@ turtle.shape(DEFAULT_IMAGE)
 screen.tracer(0)
 
 # Ask user for input via a screen popup text input
-user_answer = screen.textinput(title="Guess A State Name" ,prompt="State Name")
+user_answer = screen.textinput(title="Guess A State Name" ,prompt="State Name?")
 
 
 # Pandas Read CSV
