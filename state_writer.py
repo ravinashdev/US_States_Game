@@ -5,7 +5,7 @@ MOVE = False
 ALIGN = "center"
 FONT = ("Courier", 12, "bold")
 class StateWriter(Turtle):
-    def __init__(self,x_coordinate,y_coordinate,state_name):
+    def __init__(self,state_name,x_coordinate,y_coordinate):
         super().__init__()
         self.penup()
         self.color("green")
