@@ -36,8 +36,10 @@ while game_on:
         # print(state_data.state.to_string(index=False))
         # print(state_data.x.to_string(index=False))
         # print(state_data.y.to_string(index=False))
-
-        # StateWriter(state_data.state, state_data.x, state_data.y)
+        state_name = state_data.state.to_string(index=False)
+        state_x_coordinate = int(state_data.x.to_string(index=False))
+        state_y_coordinate = int(state_data.y.to_string(index=False))
+        StateWriter(state_name,state_x_coordinate,state_y_coordinate)
 
 # Screen exit on click
 screen.exitonclick()
