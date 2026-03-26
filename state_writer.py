@@ -9,10 +9,12 @@ class StateWriter(Turtle):
         super().__init__()
         self.penup()
         self.color("green")
+        self.hideturtle()
         self.x = state_x_coordinate
         self.y = state_y_coordinate
         self.state_name = state_name
         self.write_state_on_map()
     def write_state_on_map(self):
+        self.setposition(self.x, self.y)
         self.write(f"{self.state_name}",align=ALIGN,font=FONT)
-        self.setposition(self.x,self.y)
+
