@@ -1,19 +1,16 @@
 # IMPORTS
 import pandas as pd
-from turtle import Turtle, Screen
+import turtle
 import time
 # CONSTANTS
-DEFAULT_SCREEN_WIDTH = 750
-DEFAULT_SCREEN_HEIGHT = 450
-DEFAULT_SCREEN_COLOR = "white"
 DEFAULT_SCREEN_TITLE = "US_States_Game"
+DEFAULT_IMAGE = "blank_states_img.gif"
 
 # Initialize Screen Object
-screen = Screen()
-screen.setup(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
-screen.bgcolor(DEFAULT_SCREEN_COLOR)
+screen = turtle.Screen()
 screen.title(DEFAULT_SCREEN_TITLE)
-screen.bgpic("blank_states_img.gif")
+screen.addshape("blank_states_img.gif")
+turtle.shape(DEFAULT_IMAGE)
 screen.tracer(0)
 
 # Pandas Read CSV
