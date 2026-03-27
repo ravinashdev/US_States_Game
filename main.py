@@ -4,6 +4,8 @@ import turtle
 import time
 from state_writer import StateWriter
 from count_down_timer import CountDownTimer
+# Add GAME_ON = True to a global config file
+import config
 # CONSTANTS
 DEFAULT_SCREEN_TITLE = "US_States_Game"
 DEFAULT_IMAGE = "blank_states_img.gif"
@@ -28,15 +30,15 @@ us_states_list = us_states_dataframe["state"].tolist()
 number_of_states = int(len(us_states_list))
 
 # Initialize Game
-game_on = True
-states_correctly_guessed = []
-countdown = CountDownTimer(30)
 
-while game_on:
+states_correctly_guessed = []
+countdown = CountDownTimer(DEFAULT_GAME_TIME)
+
+while config.GAME_ON:
     screen.update()
     time.sleep(DEFAULT_SLEEP_TIME)
-    # Ask user for input via a screen popup text input and use title method to capitalize each word
-    user_answer = screen.textinput(title=f"Guess A State Name {len(states_correctly_guessed)} / {number_of_states}", prompt="State Name?").title()
+    # Ask user for input via a screen popup text input and use title method to capitalize each word and strip miscellaneous spaces
+    user_answer = screen.textinput(title=f"Guess A State Name {len(states_correctly_guessed)} / {number_of_states}", prompt="State Name?").title().strip()
     # Check the condition if user_answer is within the us_states_list created from the dataframe
     if user_answer in us_states_list:
         state_data = us_states_dataframe[us_states_dataframe["state"] == user_answer]

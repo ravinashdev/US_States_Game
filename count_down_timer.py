@@ -1,5 +1,8 @@
 # IMPORTS
 from turtle import Turtle
+import config
+from config import GAME_ON
+
 # CONSTANTS
 DEFAULT_ALIGN = "center"
 DEFAULT_FONT = ("Courier", 24, "bold")
@@ -17,9 +20,14 @@ class CountDownTimer(Turtle):
     def countdown(self, seconds):
         self.clear()
         if seconds > 0:
+            # Using divmod to display timer in minutes and seconds
+            minutes_left, seconds_left = divmod(seconds, 60)
             # Display current time
-            self.write(seconds, align=DEFAULT_ALIGN, font=DEFAULT_FONT)
+            self.write(f"Time Left: {minutes_left}:{seconds_left}", align=DEFAULT_ALIGN, font=DEFAULT_FONT)
             # Schedule the next update in 1000ms (1 second)
             self.screen.ontimer(lambda: self.countdown(seconds - 1), 1000)
         else:
             self.write("TIME'S UP!", align="center", font=("Arial", 48, "bold"))
+            # Change config GAME_ON so game ends
+            config.GAME_ON = False
+
