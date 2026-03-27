@@ -6,13 +6,13 @@ ALIGN = "center"
 FONT = ("Courier", 24, "bold")
 
 class CountDownTimer(Turtle):
-    def __init__(self, screen):
+    def __init__(self, seconds):
         super().__init__()
         self.hideturtle()
         self.penup()
         self.setposition(0,300)
-        self.screen = screen
         self.color("black")
+        self.countdown(seconds)
     def countdown(self, seconds):
         self.clear()
         if seconds > 0:

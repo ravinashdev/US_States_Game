@@ -8,6 +8,7 @@ from count_down_timer import CountDownTimer
 DEFAULT_SCREEN_TITLE = "US_States_Game"
 DEFAULT_IMAGE = "blank_states_img.gif"
 DEFAULT_SLEEP_TIME = 0.1
+DEFAULT_GAME_TIME = 300
 
 # Initialize Screen Object
 screen = turtle.Screen()
@@ -29,9 +30,8 @@ number_of_states = int(len(us_states_list))
 # Initialize Game
 game_on = True
 states_correctly_guessed = 0
-
+countdown = CountDownTimer(30)
 while game_on:
-    countdown = CountDownTimer(screen).countdown(30)
     screen.update()
     time.sleep(DEFAULT_SLEEP_TIME)
     # Ask user for input via a screen popup text input and use title method to capitalize each word
