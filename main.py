@@ -3,6 +3,7 @@ import pandas as pd
 import turtle
 import time
 from state_writer import StateWriter
+from count_down_timer import CountDownTimer
 # CONSTANTS
 DEFAULT_SCREEN_TITLE = "US_States_Game"
 DEFAULT_IMAGE = "blank_states_img.gif"
@@ -28,7 +29,9 @@ number_of_states = int(len(us_states_list))
 # Initialize Game
 game_on = True
 states_correctly_guessed = 0
+
 while game_on:
+    countdown = CountDownTimer(screen).countdown(30)
     screen.update()
     time.sleep(DEFAULT_SLEEP_TIME)
     # Ask user for input via a screen popup text input and use title method to capitalize each word
@@ -43,4 +46,5 @@ while game_on:
         StateWriter(state_name,state_x_coordinate,state_y_coordinate)
         states_correctly_guessed += 1
 # Screen exit on click
+screen.mainloop()
 screen.exitonclick()
