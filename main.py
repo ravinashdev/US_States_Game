@@ -29,13 +29,14 @@ number_of_states = int(len(us_states_list))
 
 # Initialize Game
 game_on = True
-states_correctly_guessed = 0
+states_correctly_guessed = []
 countdown = CountDownTimer(30)
+
 while game_on:
     screen.update()
     time.sleep(DEFAULT_SLEEP_TIME)
     # Ask user for input via a screen popup text input and use title method to capitalize each word
-    user_answer = screen.textinput(title=f"Guess A State Name {states_correctly_guessed} / {number_of_states}", prompt="State Name?").title()
+    user_answer = screen.textinput(title=f"Guess A State Name {len(states_correctly_guessed)} / {number_of_states}", prompt="State Name?").title()
     # Check the condition if user_answer is within the us_states_list created from the dataframe
     if user_answer in us_states_list:
         state_data = us_states_dataframe[us_states_dataframe["state"] == user_answer]
@@ -44,7 +45,8 @@ while game_on:
         state_x_coordinate = int(state_data.x.to_string(index=False))
         state_y_coordinate = int(state_data.y.to_string(index=False))
         StateWriter(state_name,state_x_coordinate,state_y_coordinate)
-        states_correctly_guessed += 1
-# Screen exit on click
+        states_correctly_guessed.append(state_name)
+# Mainloop for timer to work independently
 screen.mainloop()
+# Screen exit on click
 screen.exitonclick()
