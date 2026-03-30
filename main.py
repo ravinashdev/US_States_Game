@@ -5,19 +5,19 @@ import time
 from state_writer import StateWriter
 from auto_state_writer import AutoStateWriter
 from count_down_timer import CountDownTimer
-# Add GAME_ON = True to a global config file
+# Import CONSTANTS from a global config file
 import config
 # CONSTANTS
-DEFAULT_SCREEN_TITLE = "US_States_Game"
-DEFAULT_IMAGE = "blank_states_img.gif"
-DEFAULT_SLEEP_TIME = 0.1
+DEFAULT_SCREEN_TITLE = config.DEFAULT_SCREEN_TITLE
+DEFAULT_IMAGE = config.DEFAULT_IMAGE
+DEFAULT_SLEEP_TIME = config.DEFAULT_SLEEP_TIME
 DEFAULT_GAME_TIME = config.DEFAULT_GAME_TITLE
 
 # Initialize Screen Object
 screen = turtle.Screen()
 screen.title(DEFAULT_SCREEN_TITLE)
 # Add shape to turtle class
-screen.addshape("blank_states_img.gif")
+screen.addshape(DEFAULT_IMAGE)
 # Set entire shape of screen to image
 turtle.shape(DEFAULT_IMAGE)
 screen.tracer(0)
@@ -40,8 +40,9 @@ while config.GAME_ON:
     time.sleep(DEFAULT_SLEEP_TIME)
     # Ask user for input via a screen popup text input and use title method to capitalize each word and strip miscellaneous spaces
     user_answer = screen.textinput(title=f"Guess A State Name {len(states_correctly_guessed)} / {number_of_states}", prompt="State Name?").title().strip()
-    # Check the condition if user_answer is within the us_states_list created from the dataframe
-    if user_answer in us_states_list:
+    # Check the condition if user_answer is within the us_states_list created from the dataframe and not in
+    # states already guessed to prevent getting double points for answering the same correct state twice
+    if (user_answer in us_states_list) and (user_answer not in states_correctly_guessed):
         state_data = us_states_dataframe[us_states_dataframe["state"] == user_answer]
         # Retrieve the variables needed to create the StateWriter object with the correct arguments passed in
         state_name = state_data.state.to_string(index=False)
