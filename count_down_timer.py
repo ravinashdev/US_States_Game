@@ -20,10 +20,10 @@ class CountDownTimer(Turtle):
     def countdown(self, seconds):
         self.clear()
         if seconds > 0:
-            # Using divmod to display timer in minutes and seconds
+            # Using divmod to return minutes_left and seconds_left in a tuple
             minutes_left, seconds_left = divmod(seconds, 60)
-            # Display current time
-            self.write(f"Time Left: {minutes_left}:{seconds_left}", align=DEFAULT_ALIGN, font=DEFAULT_FONT)
+            # Display current time with a 1 leading zero in seconds and minutes
+            self.write(f"Time Left: {minutes_left:02}:{seconds_left:02}", align=DEFAULT_ALIGN, font=DEFAULT_FONT)
             # Schedule the next update in 1000ms (1 second)
             self.screen.ontimer(lambda: self.countdown(seconds - 1), 1000)
         else:

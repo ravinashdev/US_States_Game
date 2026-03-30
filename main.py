@@ -3,6 +3,7 @@ import pandas as pd
 import turtle
 import time
 from state_writer import StateWriter
+from auto_state_writer import AutoStateWriter
 from count_down_timer import CountDownTimer
 # Add GAME_ON = True to a global config file
 import config
@@ -10,7 +11,7 @@ import config
 DEFAULT_SCREEN_TITLE = "US_States_Game"
 DEFAULT_IMAGE = "blank_states_img.gif"
 DEFAULT_SLEEP_TIME = 0.1
-DEFAULT_GAME_TIME = 300
+DEFAULT_GAME_TIME = config.DEFAULT_GAME_TITLE
 
 # Initialize Screen Object
 screen = turtle.Screen()
@@ -48,6 +49,9 @@ while config.GAME_ON:
         state_y_coordinate = int(state_data.y.to_string(index=False))
         StateWriter(state_name,state_x_coordinate,state_y_coordinate)
         states_correctly_guessed.append(state_name)
+# Display all states missed when game has ended
+AutoStateWriter(states_correctly_guessed, us_states_list, us_states_dataframe)
+# print(states_missed)
 # Mainloop for timer to work independently
 screen.mainloop()
 # Screen exit on click

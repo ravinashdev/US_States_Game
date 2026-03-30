@@ -18,3 +18,4 @@ class StateWriter(Turtle):
         self.setposition(self.x, self.y)
         self.write(f"{self.state_name}",align=ALIGN,font=FONT)
 
+
