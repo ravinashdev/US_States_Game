@@ -24,4 +24,4 @@ class AutoStateWriter(Turtle):
             self.setposition(state_x_coordinate, state_y_coordinate)
             self.write(f"{state_name}",align=ALIGN,font=FONT)
     def states_missed(self):
-        return self.states_missed
+        return self.states_missed.sort()
