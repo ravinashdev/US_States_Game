@@ -51,8 +51,10 @@ while config.GAME_ON:
         StateWriter(state_name,state_x_coordinate,state_y_coordinate)
         states_correctly_guessed.append(state_name)
 # Display all states missed when game has ended
-AutoStateWriter(states_correctly_guessed, us_states_list, us_states_dataframe)
-# print(states_missed)
+auto_state_writer = AutoStateWriter(states_correctly_guessed, us_states_list, us_states_dataframe)
+# Display a CSV report of all states missed, convert ot a dataframe and export as a CSV
+states_missed_report = pd.DataFrame(auto_state_writer.states_missed, columns=["States Missed"])
+states_missed_report.to_csv("states_missed.csv")
 # Mainloop for timer to work independently
 screen.mainloop()
 # Screen exit on click
